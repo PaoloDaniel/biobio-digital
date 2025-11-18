@@ -29,9 +29,10 @@ Aplicación móvil diseñada para reducir la brecha digital en la Región del Bi
 
 #### 📡 **3. Puntos WiFi Comunitarios**
 - Listado de puntos WiFi gratuitos
-- Vista de mapa interactivo con ubicaciones
+- Coordenadas GPS de cada ubicación
+- Integración con Google Maps (abre ubicaciones externamente)
 - Información de horarios y tipo de conexión
-- Cambio entre vista lista y mapa
+- Cambio entre vista lista y vista de coordenadas
 
 #### 📄 **4. Trámites Municipales**
 - Catálogo organizado por categorías
@@ -272,9 +273,9 @@ biobio-digital/
 | React Native | 0.81.5 | Framework de desarrollo móvil |
 | Expo | ~54.0.23 | Plataforma de desarrollo |
 | React Navigation | ^7.x | Sistema de navegación |
-| React Native Maps | ^1.26.18 | Integración de mapas |
 | Expo Vector Icons | ^15.x | Iconografía |
 | Context API | - | Gestión de estado global |
+| Google Maps (externa) | - | Visualización de ubicaciones |
 
 ---
 
@@ -311,28 +312,15 @@ npm install
 
 ---
 
-## 🌐 Configuración de Google Maps (Opcional)
+## 🗺️ Integración con Google Maps
 
-Para habilitar mapas de Google (en lugar de mapas básicos):
+La aplicación utiliza Google Maps de forma externa para mostrar ubicaciones. Cuando el usuario presiona "Abrir en Google Maps" en cualquier punto WiFi, se abrirá la aplicación de Google Maps (si está instalada) o el navegador web con la ubicación exacta.
 
-1. Obtén una API Key de Google Cloud:
-   - Ve a https://console.cloud.google.com/
-   - Crea un proyecto nuevo
-   - Habilita "Maps SDK for Android"
-   - Crea credenciales (API Key)
-
-2. Agrega la key en `app.json`:
-   ```json
-   "android": {
-     "config": {
-       "googleMaps": {
-         "apiKey": "TU_API_KEY_AQUI"
-       }
-     }
-   }
-   ```
-
-3. Reinicia el servidor: `npm start`
+**Ventajas de este enfoque:**
+- ✅ Funciona inmediatamente con Expo Go (sin configuración adicional)
+- ✅ No requiere API Keys
+- ✅ Aprovecha la aplicación nativa de Google Maps del usuario
+- ✅ Incluye navegación completa, tráfico en tiempo real, etc.
 
 ---
 

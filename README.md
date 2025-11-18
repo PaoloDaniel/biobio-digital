@@ -94,7 +94,13 @@ npm install
 
 Esto instalará todas las librerías necesarias (puede tomar 2-5 minutos).
 
-**Posibles advertencias:** Es normal ver advertencias sobre versiones de Node.js. La aplicación funcionará correctamente.
+**Luego, instala las dependencias peer requeridas:**
+
+```bash
+npx expo install expo-font react-native-gesture-handler react-native-screens@~4.16.0
+```
+
+**Posibles advertencias:** Es normal ver advertencias sobre versiones de Node.js. La aplicación funcionará correctamente con Node 18.20.3 o superior.
 
 ---
 
@@ -281,6 +287,19 @@ biobio-digital/
 
 ## ⚠️ Solución de Problemas Comunes
 
+### **Problema: "java.lang.String cannot be cast to java.lang.Boolean"**
+Este error indica que faltan dependencias peer requeridas por React Navigation.
+
+```bash
+# Solución: Instalar dependencias peer
+npx expo install expo-font react-native-gesture-handler react-native-screens@~4.16.0
+
+# Luego, limpiar caché y reiniciar
+npm start -- --clear
+```
+
+**IMPORTANTE:** Asegúrate de que `import 'react-native-gesture-handler';` esté en la **primera línea** de `App.js`.
+
 ### **Problema: "Metro bundler no puede conectarse"**
 ```bash
 # Solución: Limpiar caché y reiniciar
@@ -292,11 +311,13 @@ npm start -- --clear
 # Solución: Reinstalar dependencias
 rm -rf node_modules
 npm install
+npx expo install expo-font react-native-gesture-handler react-native-screens@~4.16.0
 ```
 
 ### **Problema: La aplicación no carga en Expo Go**
 1. Verifica que tu celular y computadora estén en la misma red WiFi
-2. Intenta usar el modo túnel:
+2. Cierra COMPLETAMENTE Expo Go y ábrelo de nuevo
+3. Intenta usar el modo túnel:
    ```bash
    npm start -- --tunnel
    ```

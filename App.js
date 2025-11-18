@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { AuthProvider } from './src/context/AuthContext';
@@ -9,7 +10,7 @@ export default function App() {
     <AuthProvider>
       <DataProvider>
         <AppNavigator />
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
       </DataProvider>
     </AuthProvider>
   );

@@ -3,40 +3,14 @@
     "name": "Biobío Digital",
     "slug": "biobio-digital",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#2E7D32"
     },
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.biobio.digital"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#2E7D32"
-      },
-      "package": "com.biobio.digital",
-      "permissions": [
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION",
-        "INTERNET"
-      ]
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "plugins": [
-      [
-        "expo-location",
-        {
-          "locationAlwaysAndWhenInUsePermission": "Permitir que Biobío Digital use tu ubicación para mostrarte puntos WiFi cercanos."
-        }
-      ]
+      "expo-font"
     ]
   }
 }

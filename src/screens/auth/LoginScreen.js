@@ -5,9 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
+  ScrollView,
+  SafeAreaView,
   Alert,
 } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
@@ -31,57 +30,53 @@ export default function LoginScreen() {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <View style={styles.content}>
-        <View style={styles.header}>
-          <Text style={styles.logo}>Biobío Digital</Text>
-          <Text style={styles.subtitle}>Conectando la Región del Biobío</Text>
-        </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.content}>
+          <View style={styles.header}>
+            <Text style={styles.logo}>Biobío Digital</Text>
+            <Text style={styles.subtitle}>Conectando la Región del Biobío</Text>
+          </View>
 
-        <View style={styles.form}>
-          <Text style={styles.label}>Correo Electrónico</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="ejemplo@correo.cl"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            editable={!isLoading}
-          />
+          <View style={styles.form}>
+            <Text style={styles.label}>Correo Electrónico</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="ejemplo@correo.cl"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
 
-          <Text style={styles.label}>Contraseña</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="••••••••"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            editable={!isLoading}
-          />
+            <Text style={styles.label}>Contraseña</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="••••••••"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={true}
+            />
 
-          <TouchableOpacity
-            style={[styles.button, isLoading && styles.buttonDisabled]}
-            onPress={handleLogin}
-            disabled={isLoading}
-          >
-            <Text style={styles.buttonText}>
-              {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, isLoading && styles.buttonDisabled]}
+              onPress={handleLogin}
+            >
+              <Text style={styles.buttonText}>
+                {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+              </Text>
+            </TouchableOpacity>
 
-          <View style={styles.infoBox}>
-            <Text style={styles.infoText}>Usuarios de prueba:</Text>
-            <Text style={styles.infoText}>• usuario@correo.cl (Usuario normal)</Text>
-            <Text style={styles.infoText}>• admin@correo.cl (Administrador)</Text>
-            <Text style={styles.infoText}>Contraseña: cualquiera</Text>
+            <View style={styles.infoBox}>
+              <Text style={styles.infoText}>Usuarios de prueba:</Text>
+              <Text style={styles.infoText}>• usuario@correo.cl (Usuario normal)</Text>
+              <Text style={styles.infoText}>• admin@correo.cl (Administrador)</Text>
+              <Text style={styles.infoText}>Contraseña: cualquiera</Text>
+            </View>
           </View>
         </View>
-      </View>
-    </KeyboardAvoidingView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -90,10 +85,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  content: {
-    flex: 1,
+  scrollContent: {
+    flexGrow: 1,
     justifyContent: 'center',
     padding: spacing.lg,
+  },
+  content: {
+    width: '100%',
   },
   header: {
     alignItems: 'center',
